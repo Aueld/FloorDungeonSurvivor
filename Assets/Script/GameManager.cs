@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
 
+    public UIButtonNavigation UBN;
+
     // UI
     public Text lvText;
     public Text destroyEnemyCount;
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour
         experience += expAmount;
 
         UpdateUI();
+        UBN.SelectButton();
 
         if (experience >= maxExperience)
         {

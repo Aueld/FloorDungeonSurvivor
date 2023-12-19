@@ -203,12 +203,12 @@ public class ObjectPool : MonoBehaviour
         return newObj;
     }
 
-    private void CheckAbility(GameObject ability)
+    private void CheckAbility(GameObject go)
     {
-        Ability abilityComponent = ability.GetComponent<Ability>();
+        Ability abilityComponent = go.GetComponent<Ability>();
         if (abilityComponent != null)
         {
-            abilityComponent.SetState(prefab.GetComponent<Ability>());
+            abilityComponent.SetState(Pool[0].GetComponent<Ability>());
         }
     }
 

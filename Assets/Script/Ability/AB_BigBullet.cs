@@ -9,11 +9,15 @@ public class AB_BigBullet : Ability
     
     private bool isFilp;
 
+    private new void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
         transform.localScale = new Vector3(3, 3, 0);
         damage = 0.4f;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 

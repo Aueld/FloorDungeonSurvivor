@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4641670691655780586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4641670691655780588}
+  - component: {fileID: 4641670691655780587}
+  m_Layer: 0
+  m_Name: AbilityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4641670691655780588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641670691655780586}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4641670691655780587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641670691655780586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fe78c01eae13640ade3132342bbdd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  rewardPanel: {fileID: 0}
+  abilities:
+  - {fileID: 7086121164930295438, guid: a71453eeb4da79f4fb9a17859c02e732, type: 3}
+  - {fileID: 4639076675104417195, guid: f1f9db0342859124badf24ffa4a982db, type: 3}
+  - {fileID: 1573360248780738056, guid: d9e0f58ef7ddafb48a2a6ccaa8f09d90, type: 3}
+  passives:
+  - {fileID: 581283789401063892, guid: 6b21b5c495a3e284896e474062aaf735, type: 3}
+  - {fileID: 1629896032701527695, guid: 51780ddac941b5c4c92108c579110f8c, type: 3}
+  - {fileID: 1629896032701527695, guid: a67c88d13b9deb74d9abada11dd22c55, type: 3}
+  abilityNameText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  abilityContentText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  abilityLevelText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  abilitySpriteImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  takenAbilityImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  takenPassiveAbilityImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

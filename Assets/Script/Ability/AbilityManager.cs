@@ -42,6 +42,8 @@ public class AbilityManager : MonoBehaviour
         totalContent = new List<string>();
         totalSprites = new List<Sprite>();
 
+        abilityOrder = new List<int>();
+
         for (int i = 0; i < abilities.Count; i++)
         {
             abilityLevel.Add(0);
@@ -79,7 +81,6 @@ public class AbilityManager : MonoBehaviour
 
     public void Display()
     {
-        abilityOrder = new List<int>();
         SelectRandomAbility();
 
         for (int i = 0; i < abilitySpriteImage.Length; i++)
@@ -110,7 +111,10 @@ public class AbilityManager : MonoBehaviour
     private void SelectRandomAbility()
     {
         int currentAbility = Random.Range(0, totalContent.Count);
-        for(int i = 0; i < totalContent.Count;)
+
+        abilityOrder.Clear();
+
+        for (int i = 0; i < totalContent.Count;)
         {
             if(abilityOrder.Contains(currentAbility)) currentAbility = Random.Range(0, totalContent.Count);
             else { abilityOrder.Add(currentAbility); i++; }
@@ -142,65 +146,31 @@ public class AbilityManager : MonoBehaviour
                 player.playerDamage *= 1.1f;
                 passiveLevel[0]++;
                 break;
+
             case "이동속도 증가":
                 if (passiveLevel[1] == 0) DisplayAbility(1, false);
                 player.speed *= 1.05f;
                 passiveLevel[1]++;
                 break;
+
             case "쿨타임 감소":
                 if (passiveLevel[2] == 0) DisplayAbility(2, false);
                 player.coolTime *= 0.97f;
                 passiveLevel[2]++;
                 break;
+
             //----------------------------------------------------
 
-
             case "베기":
-                abilityLevel[0]++;
-                if (!player.abilities[0].hasAbility) { player.abilities[0].OnHasAbility(); DisplayAbility(0, true); }
-                else
-                {
-                    for (int i = 0; i < ObjectPool.Instance.BasicAttackPool.Count; i++)
-                    {
-                        AB_Basic basic = ObjectPool.Instance.BasicAttackPool[i].GetComponent<AB_Basic>();
-                        basic.AbilityLevelUp(abilityLevel[0]);
-                    }
-                }
+                LevelUpSelect(0, ObjectPool.Instance.BasicAttackPool.Count, ObjectPool.Instance.BasicAttackPool);
                 break;
 
-
             case "마법 탄":
-                abilityLevel[1]++;
-                if (!player.abilities[1].hasAbility) { player.abilities[1].OnHasAbility(); DisplayAbility(1, true); }
-                else
-                {
-                    for (int i = 0; i < ObjectPool.Instance.BigBulletPool.Count; i++)
-                    {
-                        AB_BigBullet bigBullet = ObjectPool.Instance.BigBulletPool[i].GetComponent<AB_BigBullet>();
-                        bigBullet.AbilityLevelUp(abilityLevel[1]);
-                    }
-                }
+                LevelUpSelect(1, ObjectPool.Instance.BigBulletPool.Count, ObjectPool.Instance.BigBulletPool);
                 break;
 
             case "에너지 발사":
                 LevelUpSelect(2, ObjectPool.Instance.RoundPool.Count, ObjectPool.Instance.RoundPool);
-
-                //abilityLevel[2]++;
-                //if (!player.abilities[2].hasAbility)
-                //{
-                //    //player.abilities[2].ability.infinity = true;
-                //    player.abilities[2].OnHasAbility(); DisplayAbility(2, true);
-                //}
-                //else
-                //{
-                //    for (int i = 0; i < ObjectPool.Instance.RoundPool.Count; i++)
-                //    {
-                //        AB_RoundCursor roundCursor = ObjectPool.Instance.RoundPool[i].GetComponent<AB_RoundCursor>();
-                //        //roundCursor.infinity = true;
-                //        roundCursor.AbilityLevelUp(abilityLevel[2]);
-                //        roundCursor.AddCount();
-                //    }
-                //}
                 break;
         }
 

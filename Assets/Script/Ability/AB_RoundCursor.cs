@@ -10,7 +10,7 @@ public class AB_RoundCursor : Ability
 
     private bool isFilp;
 
-    private void Start()
+    private new void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }

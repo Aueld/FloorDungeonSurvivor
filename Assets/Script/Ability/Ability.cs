@@ -28,6 +28,7 @@ public class Ability : MonoBehaviour
         count = ability.count;
         abilityLV = ability.abilityLV;
         totalDamage = ability.totalDamage;
+        damage = ability.damage;
     }
 
     public void SetPlayer(Transform _player)

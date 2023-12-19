@@ -1,0 +1,45 @@
+{
+    "name": "Navi",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "759e18a2-090b-457e-bec0-6742224d3e49",
+            "actions": [
+                {
+                    "name": "Navi",
+                    "type": "Button",
+                    "id": "53144a9b-eecc-46ad-9a5d-2f654a6a7fd8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "684bbf6a-917e-4dad-886a-46c17c562ee7",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f72c94fd-e8ad-4d7b-b0ca-ec4260ab6d51",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

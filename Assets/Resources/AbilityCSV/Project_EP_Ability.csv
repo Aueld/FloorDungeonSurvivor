@@ -1,0 +1,4 @@
+﻿Count,AbilityLV,TotalDamage,Damage,CoolTime,AbilityName,AbilityContent,Infinity
+0,0,5,5,2,베기,주변에 칼을 휘두릅니다.,FALSE
+0,0,1,1,5,마법 탄,가장 가까운 적에게 대탄을 발사합니다.,FALSE
+0,0,0.3,0.3,1,에너지 탄,가장 가까운 적에게 에너지탄을 발사합니다.,FALSE
