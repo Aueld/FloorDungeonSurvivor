@@ -3,32 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : PlayerStatus
 { 
-    public float playerDamage = 5.0f;
-    public float speed = 10.0f;
-    public float coolTime = 1f;
-    public float maxHp = 100;
-    public float curHp;
-
-    public GameObject gameOverPanel;
-    public Controller controller;
-    public SpriteRenderer sprite;
-    public Image hpImage;
-
-    private bool isMove;
-
-    private Animator anim;
-    private Vector2 movement;
-
-    /// <summary>
-    /// 능력
-    /// </summary>
-
-    // 어빌리티 모음
-    public List<HasAbility> abilities;
-    private List<float> times;
-
     private void Start()
     {
         curHp = maxHp;

@@ -52,6 +52,8 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> BlueSoulPool { get; private set; }
 
 
+    private int indexCount = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -188,12 +190,23 @@ public class ObjectPool : MonoBehaviour
 
         // 풀에서 비활성화된 오브젝트를 찾아 반환한다.
         foreach (var obj in Pool)
+        {
             if (!obj.activeSelf)
             {
                 return obj;
             }
-        
-        //Debug.Log(MonsterPoolCount);
+        }
+
+        if (CheckLimit(255))
+        {
+            indexCount = indexCount >= 255 ? 0 : indexCount;
+
+            Pool[indexCount].SetActive(false);
+            Pool[indexCount].SetActive(true);
+            return Pool[indexCount++];
+        }
+
+        indexCount = 0;
 
         // 비활성화된 오브젝트가 없을 경우, 풀을 확장한다.
         var newObj = Instantiate(prefab, transform);
@@ -201,6 +214,11 @@ public class ObjectPool : MonoBehaviour
         CheckAbility(newObj);
 
         return newObj;
+    }
+
+    private bool CheckLimit(int limit)
+    {
+        return Pool.Count > limit ;
     }
 
     private void CheckAbility(GameObject go)

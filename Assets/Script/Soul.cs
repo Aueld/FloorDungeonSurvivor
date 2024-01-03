@@ -7,23 +7,40 @@ public class Soul : MonoBehaviour
     public float soulAmount;
     public float getRange;
 
+    private WaitForSeconds wait = new(0.1f);
     private GameObject player;
 
-    private void Awake()
+    private void OnEnable()
     {
-        // 아이템을 획득 할 플레이어
-        player = GameObject.FindGameObjectWithTag("character");
+        if (GameManager.inst != null && GameManager.inst.player != null && player == null)
+            player = GameManager.inst.player.gameObject;
+
+        if (player)
+            StartCoroutine(CorUpdate());
     }
 
-    private void LateUpdate()
+    private IEnumerator CorUpdate()
     {
-        if ((player.transform.position - transform.position).magnitude >= 80)  // 플레이어와 너무 멀어지면 오브젝트 풀로 돌아감
+        while (isActiveAndEnabled)
         {
-            ObjectPool.Instance.ReturnObject(gameObject);
+            if ((player.transform.position - transform.position).magnitude >= 80)  // 플레이어와 너무 멀어지면 오브젝트 풀로 돌아감
+            {
+                ObjectPool.Instance.ReturnObject(gameObject);
+            }
+
+            yield return wait;
         }
-        else
-            return;
     }
+
+    //private void LateUpdate()
+    //{
+    //    if ((player.transform.position - transform.position).magnitude >= 80)  // 플레이어와 너무 멀어지면 오브젝트 풀로 돌아감
+    //    {
+    //        ObjectPool.Instance.ReturnObject(gameObject);
+    //    }
+    //    else
+    //        return;
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {

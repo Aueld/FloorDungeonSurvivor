@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class DmgText : MonoBehaviour
 {
     private WaitForSeconds wait = new WaitForSeconds(0.01f);

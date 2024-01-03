@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class GameManager : MonoBehaviour
     public UIButtonNavigation UBN;
 
     // UI
-    public Text lvText;
-    public Text destroyEnemyCount;
-    public Text playTimeText;
+    public TextMeshProUGUI lvText;
+    public TextMeshProUGUI destroyEnemyCount;
+    public TextMeshProUGUI playTimeText;
 
     public Image soulBar;
     public GameObject rewardPanel;
@@ -23,12 +24,7 @@ public class GameManager : MonoBehaviour
     public AbilityManager abilityManager;
 
     // 플레이어 객체
-    public GameObject player;
-
-    // 플레이어 레벨
-    public int level = 1;
-    public float experience;
-    public float maxExperience;
+    public Player player;
 
     // 처치 수, 게임 타이머
     private float timeDS = 1.2f;
@@ -110,7 +106,7 @@ public class GameManager : MonoBehaviour
             return;
 
         wave++;
-        int maxUnit = Mathf.Min(30, 5 + level);
+        int maxUnit = Mathf.Min(30, 5 + player.level);
 
         for (int i = 0; i < maxUnit; i++)
         {
@@ -128,7 +124,7 @@ public class GameManager : MonoBehaviour
             var obj = ObjectPool.Instance.GetObject(enemyName);
             EnemyController enemyController = obj.GetComponent<EnemyController>();
 
-            enemyController.SetSetting(this, player, player.GetComponent<Player>());
+            enemyController.SetSetting(this, player.gameObject, player);
 
             obj.transform.position = RandomPosition();
             obj.SetActive(true);
@@ -220,18 +216,18 @@ public class GameManager : MonoBehaviour
 
     public void LevelUp(float expAmount)
     {
-        experience += expAmount;
+        player.experience += expAmount;
 
         UpdateUI();
         UBN.SelectButton();
 
-        if (experience >= maxExperience)
+        if (player.experience >= player.maxExperience)
         {
             rewardPanel.SetActive(true);
 
-            level++;
-            experience -= maxExperience;
-            maxExperience *= (level % 10 == 0) ? 1.2f : 1.1f;
+            player.level++;
+            player.experience -= player.maxExperience;
+            player.maxExperience *= (player.level % 10 == 0) ? 1.2f : 1.1f;
 
             Time.timeScale = 0;
 
@@ -241,8 +237,8 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        lvText.text = "LV : " + level.ToString();
-        soulBar.fillAmount = experience / maxExperience;
+        lvText.text = "LV : " + player.level.ToString();
+        soulBar.fillAmount = player.experience / player.maxExperience;
     }
 
     /* expAmount

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -11,13 +12,15 @@ public class AbilityManager : MonoBehaviour
     public List<Ability> abilities;
     public List<Passive> passives;
 
-    public Text[] abilityNameText;
-    public Text[] abilityContentText;
-    public Text[] abilityLevelText;
+    public TextMeshProUGUI[] abilityNameText;
+    public TextMeshProUGUI[] abilityContentText;
+    public TextMeshProUGUI[] abilityLevelText;
     public Image[] abilitySpriteImage;
 
     public Image[] takenAbilityImage;
     public Image[] takenPassiveAbilityImage;
+
+    //--------------------------------------------------
 
     private List<int> abilityOrder;
 
@@ -156,7 +159,14 @@ public class AbilityManager : MonoBehaviour
             case "쿨타임 감소":
                 if (passiveLevel[2] == 0) DisplayAbility(2, false);
                 player.coolTime *= 0.97f;
-                passiveLevel[2]++;
+
+                if (player.coolTime < 0.3f)
+                {
+                    player.coolTime = 0.3f;
+                    DeletePassive(2);
+                }
+                else
+                    passiveLevel[2]++;
                 break;
 
             //----------------------------------------------------
@@ -171,6 +181,9 @@ public class AbilityManager : MonoBehaviour
 
             case "에너지 발사":
                 LevelUpSelect(2, ObjectPool.Instance.RoundPool.Count, ObjectPool.Instance.RoundPool);
+
+                if (abilityLevel[2] > 10)
+                    DeleteAbility(2);
                 break;
         }
 
@@ -209,5 +222,23 @@ public class AbilityManager : MonoBehaviour
         {
             totalLevel[i + abilities.Count] = passiveLevel[i];
         }
+    }
+
+    private void DeletePassive(int index)
+    {
+        totalName.Remove(passives[index].passiveName);
+        totalContent.Remove(passives[index].passiveContent);
+        totalSprites.Remove(passives[index].passiveSprite);
+
+        passives.RemoveAt(index);
+    }
+
+    private void DeleteAbility(int index)
+    {
+        totalName.Remove(abilities[index].abilityName);
+        totalContent.Remove(abilities[index].abilityContent);
+        totalSprites.Remove(abilities[index].abilitySprite);
+
+        abilities.RemoveAt(index);
     }
 }

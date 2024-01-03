@@ -12,17 +12,17 @@ public class UIButtonNavigation : MonoBehaviour
     {
         if (GameManager.inst.startPanel.activeSelf)
         {
-            var gamepad = Gamepad.current;
-            if (gamepad != null)
-            {
-                if (gamepad.dpad.down.wasPressedThisFrame)
-                    GameStart.Select();
-            }
-            else
-            {
+            //var gamepad = Gamepad.current;
+            //if (gamepad != null)
+            //{
+            //    if (gamepad.dpad.down.wasPressedThisFrame)
+            //        GameStart.Select();
+            //}
+            //else
+            //{
                 if (Keyboard.current.anyKey.wasPressedThisFrame)
                     GameStart.Select();
-            }
+            //}
         }
         else
         {
