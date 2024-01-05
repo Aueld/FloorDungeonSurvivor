@@ -23,7 +23,7 @@ public class AB_Basic : Ability
             spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    override public void Logic()
+    public override void Logic()
     {
         if (totalDamage == 0)
             totalDamage = damage;
@@ -36,7 +36,7 @@ public class AB_Basic : Ability
         StartCoroutine(CorLogic());
     }
 
-    override public IEnumerator CorLogic()
+    public override IEnumerator CorLogic()
     {
         if (isFilp)
         {

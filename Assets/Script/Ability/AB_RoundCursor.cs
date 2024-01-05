@@ -41,7 +41,7 @@ public class AB_RoundCursor : Ability
         return Vector2.zero;
     }
 
-    override public void Logic()
+    public override void Logic()
     {
         if (totalDamage == 0)
             totalDamage = damage;

@@ -47,7 +47,7 @@ public class AB_BigBullet : Ability
         return Vector2.zero;
     }
 
-    override public void Logic()
+    public override void Logic()
     {
         if (totalDamage == 0)
             totalDamage = damage;
@@ -73,7 +73,7 @@ public class AB_BigBullet : Ability
         
     }
 
-    override public IEnumerator CorLogic()
+    public override IEnumerator CorLogic()
     {
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
 

@@ -13,13 +13,13 @@ public class AB_Magnet : Ability
     {
     }
 
-    override public void Logic()
+    public override void Logic()
     {
         
         StartCoroutine(CorLogic());
     }
 
-    override public IEnumerator CorLogic()
+    public override IEnumerator CorLogic()
     {
         yield return wait;
         ObjectPool.Instance.ReturnObject(gameObject);
